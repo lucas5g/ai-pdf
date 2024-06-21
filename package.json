@@ -1,0 +1,22 @@
+{
+  "name": "ai-devs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@langchain/community": "^0.2.12",
+    "@langchain/core": "^0.2.8",
+    "@langchain/google-vertexai": "^0.0.18",
+    "langchain": "^0.2.5",
+    "node-llama-cpp": "^2.8.12",
+    "pdf-parse": "^1.1.1",
+    "redis": "^4.6.14"
+  }
+}
