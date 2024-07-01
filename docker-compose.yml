@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  redis-stack:
+    image: redis/redis-stack:latest
+    ports:
+      - "6379:6379"  # Porta padrão do Redis
+      - "8001:8001"  # Porta padrão do RedisInsight (interface visual)
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
