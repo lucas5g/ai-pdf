@@ -1,18 +1,22 @@
 import fastify from 'fastify'
-import { chatbot } from './chatbot'
+import { z } from 'zod'
+import { Chatbot } from './chatbot'
 
 export const app = fastify()
-
 
 app.get('/', async (req, res) => {
   console.log(req.query)
   return res.send('')
 })
 
-app.post('/', async(req) => {
-  const res = await chatbot(req.body.sessionId, req.body.message)
-  console.log(res)
-  return 'ok'
+app.post('/chatbot', async (req) => {
+
+  const { message } = z.object({
+    message: z.string()
+  }).parse(req.body)
+
+  return new Chatbot().sendMessage('abc2', message)
+
 })
 
 
