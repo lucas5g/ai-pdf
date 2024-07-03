@@ -5,12 +5,14 @@ import { RunnableWithMessageHistory } from "@langchain/core/runnables";
 const messageHistories: Record<string, InMemoryChatMessageHistory> = {};
 
 async function main(){
-  const res = await chatbot('meu nome é lucas')
+  console.time()
+  const res = await chatbot('meu nome é naruto')
   console.log(res)
 
   const res2 = await chatbot('qual o meu nome?')
   console.log(res2)
 
+  console.timeEnd()
 }
 main()
 
@@ -52,5 +54,6 @@ export async function chatbot(message:string) {
     config
   );
   
-  return res.content
+  return res
+  // return res.content
 }
