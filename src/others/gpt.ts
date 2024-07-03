@@ -1,5 +1,5 @@
 import { ChatOpenAI } from "@langchain/openai";
-import { env } from "./env";
+import { env } from "../env";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { RetrievalQAChain } from "langchain/chains";
 import { redis, redisVectoreStore } from "./redis-store";
