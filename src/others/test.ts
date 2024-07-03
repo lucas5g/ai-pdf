@@ -1,21 +1,23 @@
-const texto = `Aqui está um exemplo de texto que contém o nome Lucas de Sousa Assunção várias vezes. Lucas de Sousa Assunção é mencionado em diferentes contextos. Por exemplo, Lucas de Sousa Assunção pode ser um nome comum em algumas regiões.`;
+import { InMemoryChatMessageHistory } from "@langchain/core/chat_history";
 
-// Expressão regular para encontrar todas as ocorrências de "Lucas de Sousa Assunção"
-const regex = /Lucas de Sousa Assunção/g;
+async function main() {
+  const sessionId = 'example-session-id';
+  const chatHistory = new InMemoryChatMessageHistory();
 
-let ocorrencias = [];
-let match;
+  // Adiciona mensagens ao histórico de chat
+  await chatHistory.addMessage({ user: 'user1', message: 'Hello!' });
+  await chatHistory.addMessage({ user: 'bot', message: 'Hi there!' });
 
-// Usar loop para encontrar todas as ocorrências e suas posições
-while ((match = regex.exec(texto)) !== null) {
-    ocorrencias.push({
-        index: match.index,
-        texto: match[0]
-    });
+  // Recupera o histórico de mensagens
+  const messageHistories = await chatHistory.getMessages();
+  console.log('Chat Message Histories:', messageHistories);
+
+  // Verifica se o valor foi armazenado corretamente
+  if (messageHistories) {
+    console.log('Retrieved from memory:', messageHistories);
+  } else {
+    console.log('No value found in memory for session:', sessionId);
+  }
 }
 
-console.log(`Número de ocorrências: ${ocorrencias.length}`);
-console.log(`Ocorrências e posições:`);
-ocorrencias.forEach(ocorrencia => {
-    console.log(`Posição: ${ocorrencia.index}, Texto: ${ocorrencia.texto}`);
-});
+main().catch(console.error);
